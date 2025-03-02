@@ -10,8 +10,9 @@
 	<img src="./icons/shadcn.png" alt='ShadCn logo' width="140px" height="70px" >
 	<img src="./icons/html-css-js.png" alt='Html- Css - Js logo' width="130px" height="70px" >
 	<br>
-	<img src="./icons/jest.png" alt='jest logo' width="110px" height="70px" >
 	<img src="./icons/testlib.jpg" alt='SQLite logo' width="140px" height="70px" >
+	<img src="./icons/jest.png" alt='jest logo' width="110px" height="70px" >
+	<img src="./icons/cypress.png" alt='cypress logo' width="110px" height="70px" >
 	<img src="./icons/figma.png" alt='figma logo' width="140px" height="70px" >
 	<img src="./icons/drawio.jpg" alt='drawio logo' width="150px" height="70px" >
 	<br>
