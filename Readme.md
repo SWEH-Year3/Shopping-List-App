@@ -2,7 +2,7 @@
 
 ## Technology Used
 
-<p style='display:flex; flex-wrap: wrap; gap: 1em; justify-content: center'>
+<p style='display:flex; flex-wrap: wrap; gap: 1em; justify-content: center;'>
 	<img src="./icons/sqlite.jpg" alt='SQLite logo' width="100px" height="70px" >
 	<img src="./icons/react.png" alt='React logo' width="100px" height="70px" >
 	<img src="./icons/shadcn.png" alt='ShadCn logo' width="140px" height="70px" >
