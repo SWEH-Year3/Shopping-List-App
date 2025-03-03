@@ -2,9 +2,7 @@
 
 ## Technology Used
 
-
-
-<p>
+<p style='display:flex; flex-wrap: wrap; gap: 1em; justify-content: center'>
 	<img src="./icons/sqlite.jpg" alt='SQLite logo' width="100px" height="70px" >
 	<img src="./icons/react.png" alt='React logo' width="100px" height="70px" >
 	<img src="./icons/shadcn.png" alt='ShadCn logo' width="140px" height="70px" >
@@ -18,13 +16,13 @@
 	<br>
 	<img src="./icons/vscode.png" alt='vscode logo' width="140px" height="70px" >
 	<img src="./icons/msproject.jpg" alt='Mircrosoft Project Tool logo' width="140px" height="70px" >
+	<img src="./icons/ocr.png" alt='ocr logo' width="150px" height="70px" >
 	<img src="./icons/cap.png" alt='capacitor logo' width="100px" height="70px" >
 	<img src="./icons/androidstd.png" alt='android studio logo' width="140px" height="70px" >
 	<img src="./icons/android.png" alt='android logo' width="140px" height="70px" >
 </p>
 
-
-## Content 
+## Content
 
 <table>
 	<tr>
@@ -48,8 +46,6 @@
 		</td>
 	</tr>
 </table>
-
-
 
 ### Intro
 
