@@ -10,13 +10,17 @@
     "@capacitor/camera": "^7.0.0",
     "@capacitor/filesystem": "^7.0.0",
     "@capacitor/splash-screen": "^7.0.0",
+    "@radix-ui/themes": "^3.2.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "html5-qrcode": "^2.3.8",
+    "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.15.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

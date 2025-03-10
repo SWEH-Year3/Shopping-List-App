@@ -2,8 +2,7 @@ button{
     margin: 2em;
     background-color: blue;
     color: white;
-    width: 5em;
-    height: 5em;
+    
     border-radius: 5em;
     cursor: pointer;
 }
@@ -21,6 +20,15 @@ button::selection
 }
 
 #Card{
-    background-color: wheat;
+    background-color: rgb(216, 215, 214);
     flex-direction: column;
+}
+
+.btn
+{
+    margin: 3em;
+}
+
+.Title{
+    margin: 1em  5em;
 }
