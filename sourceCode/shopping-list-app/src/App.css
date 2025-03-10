@@ -1,0 +1,26 @@
+button{
+    margin: 2em;
+    background-color: blue;
+    color: white;
+    width: 5em;
+    height: 5em;
+    border-radius: 5em;
+    cursor: pointer;
+}
+
+button::selection
+{
+    display: none;
+    background-color: transparent;
+}
+
+#action{
+    align-items: center;
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+#Card{
+    background-color: wheat;
+    flex-direction: column;
+}

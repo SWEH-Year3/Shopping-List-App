@@ -14,7 +14,7 @@
 	<img src="./icons/drawio.jpg" alt='drawio logo' width="150px" height="70px" >
 	<img src="./icons/vscode.png" alt='vscode logo' width="140px" height="70px" >
 	<img src="./icons/msproject.jpg" alt='Mircrosoft Project Tool logo' width="140px" height="70px" >
-	<img src="./icons/ocr.png" alt='ocr logo' width="150px" height="70px" >
+	<img src="./icons/qrcode.png" alt='qrcode logo' width="70px" height="70px" >
 	<img src="./icons/chart.png" alt='chart logo' width="120px" height="70px" >
 	<img src="./icons/cap.png" alt='capacitor logo' width="100px" height="70px" >
 	<img src="./icons/androidstd.png" alt='android studio logo' width="140px" height="70px" >
@@ -66,5 +66,5 @@ This Mobile App will be developed to help people Track Their goods and display a
 3. Dashboard
    1. chart lists with based on price
    2. chart lists with based on items count
-4. OCR
+4. QR-Code
    1. Scan List to auto fill
