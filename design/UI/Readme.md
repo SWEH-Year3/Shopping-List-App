@@ -5,7 +5,7 @@
 <tr align="center"> <th>Design</th> <th>Link</th></tr> 
 <tr align="center"> <td>Website</td> <td><a href="#Website">Link</a></td></tr> 
 <tr align="center"> <td>Mobile App</td> <td><a href="#App">Link</a></td></tr>  
-<tr align="center"> <td>Download</td> <td><a href="#">Link</a></td></tr> 
+<tr align="center"> <td>Download</td> <td><a href="https://sweh-year3.github.io/Shopping-List-App/">Link</a></td></tr> 
 </table>
 
 
