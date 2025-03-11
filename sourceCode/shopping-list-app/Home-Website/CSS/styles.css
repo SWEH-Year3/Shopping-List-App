@@ -89,7 +89,7 @@ a{
 }
 
 .nav a i{
-    color: var(--main-color);
+    color: black;
     font-size: 30px;
 }
 
