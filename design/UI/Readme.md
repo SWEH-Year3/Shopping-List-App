@@ -13,8 +13,8 @@
 
 <p>
 <img src="./Website/components.site.png" width=200 height=400>
-<img src="./Website/mobileView.site.png" width=200 height=400><br>
-<img src="./Website/webview.site.png" width=405 >
+<img src="./Website/mobileView.site.png" width=200 height=400>
+<img src="./Website/webview.site.png" width=500 >
 </p>
 
 
