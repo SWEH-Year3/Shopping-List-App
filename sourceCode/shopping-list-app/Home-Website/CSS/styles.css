@@ -175,7 +175,7 @@ a{
     width: 25%;
     border-width: 3px;
     border-style: solid;
-    color: var(--main-color);
+    color: #51a184;
     box-shadow: 1px 5px 20px 0px #66666666;
     min-width: max-content;
     transition: var(--main-transition);
