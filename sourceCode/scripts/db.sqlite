@@ -1,4 +1,237 @@
-CREATE TABLE Lists(
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name TEXT 
+-- Lists Table
+CREATE TABLE
+if NOT EXISTS Lists
+(	
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name Text NOT NULL,
+  description Text DEFAULT(''),
+  history Integer DEFAULT(0),
+  created_at Text DEFAULT(date('now')),
+  isDeleted Integer DEFAULT (0)
 );
+
+-- Items Table
+CREATE TABLE
+if NOT EXISTS Items
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name Text not NULL,
+  description Text DEFAULT(''),
+  price Float DEFAULT(0.0),
+  quantity Text DEFAULT(0),
+  img Text DEFAULT(''),
+  checked INTEGER DEFAULT 0,
+  isDeleted Integer DEFAULT 0,
+  listID INTEGER,
+  FOREIGN KEY (listID) REFERENCES Lists(id)
+);
+
+
+INSERT INTO Lists
+    (name, description)
+VALUES
+    ('smartvile', 'new city');
+INSERT INTO Lists
+    (name)
+VALUES
+    ('cartos');
+INSERT INTO Lists
+    (name)
+VALUES
+    ('newList');
+INSERT INTO Lists
+    (name,description,created_at)
+VALUES
+    ('newList111', '', '2025-05-01');
+INSERT INTO Lists
+    (name,description,created_at)
+VALUES
+    ('dataList', '', '2025-05-10');
+INSERT INTO Lists
+    (name,description,created_at)
+VALUES
+    ('dataList1', '', '2024-05-10');
+INSERT INTO Lists
+    (name,description)
+VALUES
+    ('newList123', '');
+
+INSERT INTO Items
+    (name,quantity,price,listid)
+VALUES
+    ('milk', '4 L', 12.4, 1);
+INSERT INTO Items
+    (name,quantity,price,listid,checked)
+VALUES
+    ('oil', '1 bottle', 20.4, 1, 1);
+INSERT INTO Items
+    (name,quantity,price,listid,checked)
+VALUES
+    ('juice', '1 bottle', 10, 2, 0);
+INSERT INTO Items
+    (name,quantity,price,listid,checked)
+VALUES
+    ('juice', '1 bottle', 10, 3, 1);
+INSERT INTO Items
+    (name,quantity,price,listid,checked)
+VALUES
+    ('joy', '1 bottle', 10, 5, 0);
+INSERT INTO Items
+    (name,quantity,price,listid,checked)
+VALUES
+    ('joy', '1 bottle', 10, 5, 0);
+INSERT INTO Items
+    (name,quantity,price,listid,checked,isdeleted)
+VALUES
+    ('juice', '1 bottle', 10, 3, 1, 1);
+
+-- get Lists page
+SELECT
+    Lists.id,
+    Lists.name,
+    Lists.description,
+    IFNULL(COUNT(Items.name),0) as ItemCount,
+    IFNULL(SUM(Items.price),0) as TotalCost
+from Items RIGHT join Lists
+    on Items.listID = Lists.id
+GROUP by listid
+HAVING Lists.isDeleted = 0 AND Lists.history = 0
+ORDER BY Lists.created_at DESC;
+
+-- delete List
+UPDATE Lists 
+	set isdeleted = 1 
+    where id = 3;
+
+-- delete Items
+UPDATE Items 
+	set isdeleted = 1
+    where listid = 3;
+
+-- return List
+UPDATE Lists 
+	set isdeleted = 0 
+    where id = 3;
+
+-- return Items
+UPDATE Items 
+	set isdeleted = 0
+    where listid = 3;
+
+-- get History page
+SELECT
+    Lists.id,
+    Lists.name,
+    Lists.description,
+    Lists.created_at,
+    IFNULL(COUNT(Items.name),0) as Total,
+    IFNULL(SUM(Items.price),0) as Price
+from Items RIGHT join Lists
+    on Items.listID = Lists.id
+GROUP BY Lists.name
+HAVING Lists.isDeleted = 0
+ORDER by Lists.created_at Desc;
+
+-- add to history 
+UPDATE Lists set history = 1 where id = 3;
+
+-- search items by name 
+
+SELECT
+    Items.id,
+    Items.name,
+    Items.description,
+    Items.img,
+    Items.price,
+    Items.quantity,
+    Items.checked,
+    Lists.created_at
+from Items RIGHT join Lists
+    on Items.listID = Lists.id
+GROUP BY Lists.name
+HAVING Lists.isDeleted = 0 and Lists.history = 0 and Items.name = 'juice'
+ORDER by Lists.created_at Desc;
+
+
+-- select items for specific list Items
+
+SELECT
+    Items.id,
+    Items.name,
+    Items.description,
+    Items.price,
+    Items.quantity,
+    Items.img,
+    Items.checked
+from Items
+WHERE listid = 1;
+
+SELECT
+    Lists.id,
+    Lists.name,
+    IFNULL(Sum(Items.price),0) as total
+FROM Lists JOIN Items
+    on Lists.id = Items.listID
+WHERE Lists.id = 1;
+
+-- add new List 
+INSERT INTO Lists
+    (name,description)
+VALUES
+    ('list1', 'tested List1');
+
+-- edit new List 
+UPDATE Lists 
+	set name = 'List2',
+    description = 'List2 Description'
+    WHERE id = 5;
+
+-- add new Item 
+INSERT INTO Items
+    (name,description,price,quantity,img,listid)
+VALUES
+    ('item1', 'tested item1', 12.5, '5 KG', '/images', 7);
+
+-- edit new Item 
+UPDATE Items 
+	set name = 'Item2',
+    description='Item2 Description',
+    price=20.4,
+    quantity='10 Ton',
+    img='/images' 
+	WHERE id = 11;
+
+-- dashboard 
+-- chart data
+SELECT
+    Lists.created_at,
+    IFNULL(COUNT(Items.name),0) As Quantity
+FROM Lists LEFT JOIN Items
+    on Lists.id = Items.listID
+WHERE
+    	Lists.created_at >= concat(substring(date('now'),1,4),'-01-01')
+    AND Lists.created_at <= concat(substring(date('now'),1,4),'-12-31')
+GROUP BY Lists.created_at;
+
+-- summary part 
+select
+    Items.name,
+    IFNULL(AVG(Items.price),0.0) AS Average_Price,
+    IFNULL(COUNT(Items.price),0.0) as Quantity
+FROM Items JOIN Lists
+    on Items.listID = Lists.id
+WHERE 
+    	Lists.created_at >= concat(substring(date('now'),1,4),'-01-01')
+    AND Lists.created_at <= concat(substring(date('now'),1,4),'-12-31')
+    AND Lists.isDeleted = 0
+    AND Items.isDeleted = 0
+GROUP by Items.name
+
+-- empty recycle bin 
+
+DELETE  from Items WHERE isdeleted = 1;
+DELETE  from Lists WHERE isdeleted = 1;
+
+-- delete table 
+DROP TABLE Lists;
+DROP TABLE Items;
