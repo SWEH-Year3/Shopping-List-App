@@ -1,0 +1,88 @@
+
+.recycle-bin-container {
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    margin-top: 70px;
+  }
+  
+  .full-width {
+    margin-left: 0;
+  }
+  
+  .recycle-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .recycle-group {
+    margin-bottom: 20px;
+  }
+  
+  .recycle-date {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .recycle-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #E9F6ED;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+
+  }
+  .recycle-card:hover{
+    transform: scale(1.02);
+
+  }
+  .recycle-card-content {
+    flex-grow: 1;
+
+  }
+  
+  .recycle-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .recycle-card-title {
+    font-weight: bold;
+  }
+  
+  .recycle-card-desc {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .recycle-card-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .recycle-card-price {
+    font-weight: bold;
+  }
+  
+  .recycle-card-quantity {
+    color: #666;
+  }
+  
+  .restore-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    transition: transform 0.2s;
+  }
+  
+  .restore-icon:hover {
+    transform: scale(1.1);
+  }
+  

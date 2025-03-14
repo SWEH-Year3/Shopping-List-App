@@ -1,0 +1,80 @@
+
+
+.my-lists-container {
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    margin-top: 70px;
+  }
+  
+  .full-width {
+    margin-left: 0;
+  }
+  
+  .my-lists-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .list-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 312px;
+    height: 89px;
+    background: #e9f6ed;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-in-out;
+  }
+  .list-card:hover{
+    transform: scale(1.02);
+  }
+  .list-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .list-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .list-card-title {
+    font-weight: bold;
+  }
+  
+  .list-card-desc {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .list-card-info {
+    align-items: center;
+    border-left: 2px solid #333;
+    width: 100px;
+    padding-left: 10px;
+    
+
+  }
+  
+  .list-card-price {
+    font-weight: bold;
+    font-size: 14px;
+
+    
+  }
+  .list-card-items{
+    font-size: 14px;
+    color: #666;
+    
+  }
+
+  
+
+  
+
+  

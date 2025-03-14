@@ -1,0 +1,73 @@
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css";
+
+/* reset */
+a,
+button {
+	all: unset;
+}
+
+.ToolbarRoot {
+	display: flex;
+	width: 70%;
+	border-radius: 9999px;
+	background-color: white;
+	box-shadow: 0 2px 10px var(--black-a7);   
+    margin-left: 50px; 
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    margin-top: 150px;
+}
+
+
+.ToolbarButton {
+	flex: 0 0 auto;
+	color: var(--mauve-11);
+	height: 25px;
+	padding: 0 5px;
+	border-radius: 4px;
+	display: inline-flex;
+	font-size: 13px;
+	line-height: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.ToolbarLink:hover {
+
+	color: #8EC3B0;
+}
+
+
+.ToolbarLink {
+	background-color: transparent;
+	color: var(--mauve-11);
+	/* display: none; */
+	justify-content: center;
+	align-items: center;
+}
+.ToolbarLink:hover {
+	background-color: transparent;
+	cursor: pointer;
+}
+@media (min-width: 520px) {
+	.ToolbarLink {
+		display: inline-flex;
+	}
+}
+
+.ToolbarButton {
+	padding-left: 10px;
+	padding-right: 10px;
+	color: black;
+    width: 20px;
+
+
+}
+.ToolbarButton:hover {
+
+	color: #8EC3B0;
+	cursor: pointer;
+
+}

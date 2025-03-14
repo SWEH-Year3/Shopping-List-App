@@ -1,0 +1,44 @@
+.add-item-container {
+    padding: 20px;
+    max-width: 350px;
+    margin: auto;
+    margin-top: 70px;
+  }
+  
+  .add-item-container h2 {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #9ED5C5;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  button:hover {
+    background-color: #7eb4a4;
+  }
+  
