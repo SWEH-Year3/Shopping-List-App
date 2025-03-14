@@ -1,6 +1,23 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
+
+body {
+    font-family: "Italiana", serif;
+}
+
+:root{
+    --main-color: #8EC3B0;
+    --main-alt: #9ED5C5;
+    --secondary-color: #8CEAD5;
+    --background: #E9F6ED;
+    --black: #202020;
+    --Italiana-fonts: 'Italiana';
+    --inknut-fonts: 'Inknut Antiqua';
+    
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "Inknut Antiqua", serif,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

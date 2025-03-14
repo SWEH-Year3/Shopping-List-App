@@ -69,7 +69,7 @@ function EditItem() {
         <label>Upload Image</label>
         <input type="file" onChange={handleImageUpload} />
 
-        <button type="submit">
+        <button type="submit" className="add-item-button">
             Update Item
         </button>
       </form>

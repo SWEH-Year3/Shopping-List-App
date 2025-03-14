@@ -28,7 +28,7 @@
     border-radius: 5px;
   }
   
-  button {
+  .add-item-button {
     background-color: #9ED5C5;
     color: white;
     border: none;
@@ -36,8 +36,12 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    position: fixed;
+    bottom: 2em;
+    width: clamp(60vw, 80vw, 100vw);
   }
   
+
   button:hover {
     background-color: #7eb4a4;
   }

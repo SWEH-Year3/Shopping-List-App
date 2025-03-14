@@ -53,7 +53,8 @@ button {
 	background-color: #E9F6ED;
 	box-shadow: 0 2px 10px var(--black-a7);
 	user-select: none;
-	margin-bottom: 200px;
+	margin-bottom: 2em;
+    margin-right: 1em;
 }
 .IconButton:hover {
 	background-color:#9ED5C5;

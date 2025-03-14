@@ -36,7 +36,9 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    margin-top: 300px;
+    position: fixed;
+    bottom: 2em;
+    width: clamp(60vw, 80vw, 100vw);
   }
   
   button:hover {
