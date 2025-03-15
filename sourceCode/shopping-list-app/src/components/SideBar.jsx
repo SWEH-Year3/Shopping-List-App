@@ -6,6 +6,7 @@ import { IoStatsChart } from "react-icons/io5";
 import { LuHistory } from "react-icons/lu";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import "../styles/SideBar.css";
+import { ThemeToggle } from "./ThemeToggle";
 
 const SideBar = ({ sidebarToggle }) => {
   return (
@@ -42,6 +43,7 @@ const SideBar = ({ sidebarToggle }) => {
           </Link>
         </li>
       </ul>
+      <ThemeToggle/>
     </div>
   );
 };
