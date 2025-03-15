@@ -99,6 +99,7 @@
   }
 
 
+
 }
 
 
@@ -108,12 +109,14 @@
   cursor: pointer;
   color: black;
   padding: 5px;
-  margin-left: 16.5rem;
+  margin-left: 16rem;
   transition: background-color 0.2s ease-in-out;
   position: absolute;
   transform: translateY(-50%);
   width: 10px;
   margin-bottom: 2rem;
+
+
 
 }
 
@@ -145,6 +148,7 @@
 .dropdown-arrow {
   fill: white;
 }
+
 
 
 

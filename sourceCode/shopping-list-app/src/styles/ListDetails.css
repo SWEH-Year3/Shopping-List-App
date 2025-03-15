@@ -1,0 +1,100 @@
+.list-details-container {
+    padding: 16px;
+    background: #f0f9f4;
+    min-height: 100vh;
+  }
+  
+  .list-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-top: 60px;
+    font-weight: bold;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .total-price {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .items-list {
+    margin-top: 16px;
+  }
+  
+  .item-card {
+    display: flex;
+    align-items: center;
+    background: #e6f4ec;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+  
+  .item-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .item-details {
+    flex: 1;
+  }
+  
+  .item-name {
+    font-weight: bold;
+  }
+  
+  .item-description {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .item-price-info {
+    text-align: right;
+  }
+  
+  .item-price {
+    font-weight: bold;
+    display: block;
+  }
+  
+  .item-quantity {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .dropdown-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .floating-add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #6ecf96;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+  
