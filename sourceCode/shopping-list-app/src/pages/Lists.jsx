@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/MyLists.css";
 import AddBtn from "../components/AddBtn";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { DotsVerticalIcon } from "@radix-ui/react-icons"; 
+import { DotsVerticalIcon } from "@radix-ui/react-icons";
 
-function Lists({ sidebarToggle, lists }) {
+function Lists({ sidebarToggle, lists ,deleteList}) {
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false); 
 
   return (
     <div className={`my-lists-container ${sidebarToggle ? "" : "full-width"}`}>
@@ -14,40 +15,53 @@ function Lists({ sidebarToggle, lists }) {
 
       <div className="list-group">
         {lists.map((list) => {
-         
-          const totalPrice = (Array.isArray(list.items) ? list.items : []).reduce(
+          const totalPrice = (list.items || []).reduce(
             (sum, item) => sum + (item.price * item.quantity || 0),
             0
           );
 
           return (
-            <div 
-              key={list.id} 
+            <div
+              key={list.id}
               className="list-card"
-              onClick={() => navigate(`/list/${list.id}`)} 
+              onClick={() => {
+                if (!dropdownOpen) { 
+                  navigate(`/list/${list.id}`);
+                }
+              }}
               style={{ cursor: "pointer" }}
             >
-              
-              <DropdownMenu.Root>
+              <DropdownMenu.Root onOpenChange={(open) => setDropdownOpen(open)}>
                 <DropdownMenu.Trigger asChild>
-                  <button 
-                    className="dropdown-trigger"
+                  <button
+                    className="dropdownMenu-trigger"
                     onClick={(e) => e.stopPropagation()} 
                   >
                     <DotsVerticalIcon />
                   </button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>
-                  <DropdownMenu.Content className="dropdown-content">
-                    <DropdownMenu.Item 
-                      className="dropdown-item" 
-                      onSelect={() => navigate(`/EditList/${list.id}`)}
+                  <DropdownMenu.Content className="dropdownMenu-content">
+                    <DropdownMenu.Item
+                      className="dropdownMenu-item"
+                      onSelect={() => {
+                        navigate(`/EditList/${list.id}`);
+                      }}
                     >
                       Edit
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item className="dropdown-item">Delete</DropdownMenu.Item>
-                    <DropdownMenu.Item className="dropdown-item">QR Code</DropdownMenu.Item>
-                    <DropdownMenu.Arrow className="dropdown-arrow" />
+                    <DropdownMenu.Item
+                    className="dropdownMenu-item"
+                    onSelect={() => {
+                      if (window.confirm("Are you sure you want to delete this list?")) {
+                        deleteList(list.id); 
+                      }
+                    }}
+                  >
+                    Delete
+                  </DropdownMenu.Item>
+                    <DropdownMenu.Item className="dropdownMenu-item">QR Code</DropdownMenu.Item>
+                    <DropdownMenu.Arrow className="dropdownMenu-arrow" />
                   </DropdownMenu.Content>
                 </DropdownMenu.Portal>
               </DropdownMenu.Root>
@@ -58,20 +72,19 @@ function Lists({ sidebarToggle, lists }) {
               </div>
 
               <div className="list-card-info">
-                <p className="list-card-price">L.E {totalPrice}</p>
-                <p className="list-card-items">Items: {list.items?.length || 0}</p>
-              </div>
+              <p className="list-card-price">L.E {totalPrice}</p>
+              <p className="list-card-items">Items: {(list.items || []).length}</p>
+            </div>
             </div>
           );
         })}
       </div>
-
+      
       <Link to="/AddList">
         <AddBtn />
       </Link>
     </div>
   );
 }
-
 
 export default Lists;

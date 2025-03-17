@@ -1,7 +1,8 @@
+
 .my-lists-container {
-  padding: 2rem; 
+  padding: 2rem;
   transition: margin-left 0.3s ease-in-out;
-  margin-top: 5rem; 
+  margin-top: 5rem;
 }
 
 .full-width {
@@ -9,30 +10,29 @@
 }
 
 .my-lists-title {
-  font-size: 2rem; 
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 2rem; 
+  margin-top: 3rem;
 }
 
 .list-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem; 
+  gap: 1rem;
 }
 
 .list-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; 
+  width: 100%;
   max-width: 400px;
   background: #e9f6ed;
-  padding: 1rem; 
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
   position: relative;
-
 }
 
 .list-card:hover {
@@ -46,18 +46,18 @@
 
 .list-card-title {
   font-weight: bold;
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
 }
 
 .list-card-desc {
   color: #666;
-  font-size: 1rem; 
+  font-size: 1rem;
 }
 
 .list-card-info {
   align-items: center;
   border-left: 2px solid #333;
-  padding-left: 1rem; 
+  padding-left: 1rem;
 }
 
 .list-card-price {
@@ -66,44 +66,11 @@
 }
 
 .list-card-items {
-  font-size: 1rem; 
+  font-size: 1rem;
   color: #666;
 }
 
-
-@media (max-width: 768px) {
-  .my-lists-container {
-      padding: 1rem;
-  }
-
-  .my-lists-title {
-      font-size: 1.5rem;
-  }
-
-  .list-card {
-      width: 90%;
-      max-width: 100%;
-  }
-
-  .list-card-title {
-      font-size: 1rem;
-  }
-
-  .list-card-desc {
-      font-size: 0.875rem;
-  }
-
-  .list-card-price,
-  .list-card-items {
-      font-size: 0.875rem;
-  }
-
-
-
-}
-
-
-.dropdown-trigger {
+.dropdownMenu-trigger {
   background: none;
   border: none;
   cursor: pointer;
@@ -115,16 +82,13 @@
   transform: translateY(-50%);
   width: 10px;
   margin-bottom: 2rem;
-
-
-
 }
 
-.dropdown-trigger:hover {
+.dropdownMenu-trigger:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.dropdown-content {
+.dropdownMenu-content {
   background: white;
   border-radius: 6px;
   padding: 8px;
@@ -132,7 +96,7 @@
   min-width: 120px;
 }
 
-.dropdown-item {
+.dropdownMenu-item {
   padding: 8px 12px;
   font-size: 14px;
   color: #333;
@@ -141,15 +105,102 @@
   outline: none;
 }
 
-.dropdown-item:hover {
+.dropdownMenu-item:hover {
   background-color: #f0f0f0;
 }
 
-.dropdown-arrow {
+.dropdownMenu-arrow {
   fill: white;
 }
 
 
+@media (max-width: 768px) {
+  .my-lists-container {
+    padding: 1rem;
+    margin-top: 2rem; 
+  }
+
+  .my-lists-title {
+    font-size: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .list-card {
+    width: 100%; 
+    max-width: 95%;
+    padding: 0.75rem; 
+  }
+
+  .list-card-title {
+    font-size: 0.9rem; 
+  }
+
+  .list-card-desc {
+    font-size: 0.8rem; 
+  }
+
+  .list-card-price,
+  .list-card-items {
+    font-size: 0.8rem;
+  }
+
+  .dropdownMenu-trigger {
+    margin-left: 18rem; 
+    padding: 4px;
+    top: 32px;
+  }
+
+  .dropdownMenu-content {
+    min-width: 100px; 
+  }
+
+  .dropdownMenu-item {
+    padding: 6px 10px; 
+    font-size: 12px; 
+  }
+}
 
 
+@media (max-width: 386px) {
+  .my-lists-container {
+    padding: 0.5rem;
+    margin-top: 2rem;
+  }
 
+  .my-lists-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .list-card {
+    padding: 0.5rem;
+  }
+
+  .list-card-title {
+    font-size: 0.8rem;
+  }
+
+  .list-card-desc {
+    font-size: 0.7rem;
+  }
+
+  .list-card-price,
+  .list-card-items {
+    font-size: 0.7rem;
+  }
+
+  .dropdownMenu-trigger {
+    margin-left: 15.5rem;
+    padding: 3px;
+    top: 25px;
+  }
+
+  .dropdownMenu-content {
+    min-width: 80px;
+  }
+
+  .dropdownMenu-item {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}
