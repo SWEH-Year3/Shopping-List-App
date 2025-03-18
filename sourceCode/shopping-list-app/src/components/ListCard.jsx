@@ -1,50 +1,68 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/AddList.css";
 
-function ListCard() {
+function ListCard({ addList }) {
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-
+    price: "",
+    items: 0,
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("List added:", formData);
-    // Add logic to save the item
+    
+    if (!addList) {
+      console.error("addList function is not available");
+      return;
+    }
+
+   
+    const newList = {
+      id: Date.now(), 
+      title: formData.title,
+      description: formData.description,
+      price: formData.price,
+      items: formData.items,
+    };
+
+    addList(newList); 
+    navigate("/myList");
   };
 
   return (
     <div className="add-item-container">
       <h2>Add List</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
+        <label htmlFor="title">Title</label>
         <input
+        id="title"
           type="text"
           name="title"
-          placeholder="e.g. Milk"
+          placeholder="e.g. Groceries"
           value={formData.title}
           onChange={handleChange}
           required
         />
 
-        <label>Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
+        id="description"
           name="description"
-          placeholder="e.g. Oat milk, 2 Liter"
+          placeholder="e.g. Weekly groceries shopping"
           value={formData.description}
           onChange={handleChange}
         />
 
-        <button type="submit">
-            + Add List
-        </button>
+
+        <button type="submit">+ Add List</button>
       </form>
     </div>
   );

@@ -1,39 +1,77 @@
-import React, { useState } from "react";
-import "../styles/AddItem.css";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import "../styles/EditItem.css";
 
-function EditItem() {
+function EditItem({ lists, updateItem }) {
+  const { listId, itemId } = useParams();
+  const navigate = useNavigate();
+
+  const list = lists.find((l) => l.id === parseInt(listId));
+  const item = list?.items.find((i) => i.id === parseInt(itemId));
+
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    quantity: "",
-    price: "",
+    name: item?.name || "",
+    description: item?.description || "",
+    quantity: item?.quantity || 1,
+    price: item?.price || "",
     image: null,
+    imagePreview: item?.image || null,
   });
+
+  useEffect(() => {
+    if (item) {
+      setFormData({
+        name: item.name,
+        description: item.description,
+        quantity: item.quantity,
+        price: item.price,
+        image: null,
+        imagePreview: item.image || null,
+      });
+    }
+  }, [item]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleImageUpload = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({
+        ...formData,
+        image: file,
+        imagePreview: URL.createObjectURL(file),
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Item Edited:", formData);
-    // Add logic to save the item
+
+    const updatedItem = {
+      id: item.id,
+      name: formData.name,
+      description: formData.description,
+      quantity: parseInt(formData.quantity),
+      price: parseFloat(formData.price),
+      image: formData.imagePreview || "/placeholder.png",
+    };
+
+    updateItem(listId, updatedItem);
+    navigate(`/list/${listId}`);
   };
 
   return (
     <div className="add-item-container">
       <h2>Edit Item</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
+        <label>Item Name</label>
         <input
           type="text"
-          name="title"
-          placeholder=" Milk"
-          value={formData.title}
+          name="name"
+          placeholder="e.g. Milk"
+          value={formData.name}
           onChange={handleChange}
           required
         />
@@ -41,7 +79,7 @@ function EditItem() {
         <label>Description</label>
         <textarea
           name="description"
-          placeholder="milk"
+          placeholder="e.g. Oat milk, 2 Liters"
           value={formData.description}
           onChange={handleChange}
         />
@@ -50,7 +88,7 @@ function EditItem() {
         <input
           type="number"
           name="quantity"
-          placeholder=" 2"
+          placeholder="e.g. 2"
           value={formData.quantity}
           onChange={handleChange}
           required
@@ -60,7 +98,7 @@ function EditItem() {
         <input
           type="number"
           name="price"
-          placeholder=" 50"
+          placeholder="e.g. 50"
           value={formData.price}
           onChange={handleChange}
           required
@@ -69,8 +107,10 @@ function EditItem() {
         <label>Upload Image</label>
         <input type="file" onChange={handleImageUpload} />
 
+
+
         <button type="submit" className="add-item-button">
-            Update Item
+          Update Item
         </button>
       </form>
     </div>

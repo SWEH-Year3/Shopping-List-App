@@ -1,0 +1,170 @@
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css";
+
+a,
+button {
+	all: unset;
+}
+
+.ToolbarRoot {
+	display: flex;
+	width: 70%;
+	border-radius: 9999px;
+	background-color: white;
+	box-shadow: 0 2px 10px var(--black-a7);   
+    margin-left: 50px; 
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    margin-top: 150px;
+}
+
+.ToolbarButton {
+	flex: 0 0 auto;
+	color: var(--mauve-11);
+	height: 25px;
+	padding: 0 5px;
+	border-radius: 4px;
+	display: inline-flex;
+	font-size: 13px;
+	line-height: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.ToolbarLink:hover {
+	color: #8EC3B0;
+}
+
+.ToolbarLink {
+	background-color: transparent;
+	color: var(--mauve-11);
+	justify-content: center;
+	align-items: center;
+}
+.ToolbarLink:hover {
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.ToolbarButton {
+	padding-left: 10px;
+	padding-right: 10px;
+	color: black;
+    width: 20px;
+}
+.ToolbarButton:hover {
+	color: #8EC3B0;
+	cursor: pointer;
+}
+
+.image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	height: 30rem;
+}
+.centered-image {
+	max-width: 100%;
+	height: 100%;
+	margin-left: 1rem;
+}
+
+
+.search-container {
+    padding: 20px;
+}
+
+.search-results {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--black-a7);
+}
+
+.search-result-item {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f9f9f9;
+}
+
+.search-result-item h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.search-result-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.no-results {
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+
+.ToolbarLink input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    background-color: transparent;
+}
+
+.ToolbarLink input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+.ToolbarLink input[type="text"]:focus {
+    border-color: #8EC3B0;
+}
+
+
+@media (max-width: 360px) {
+	.ToolbarLink {
+		display: inline-flex;
+	}
+
+    .ToolbarRoot {
+        width: 90%;
+        margin-left: 20px;
+        padding: 10px;
+    }
+
+    .ToolbarLink input[type="text"] {
+        font-size: 12px;
+    }
+
+    .search-results {
+        margin-top: 10px;
+    }
+
+    .search-result-item h4 {
+        font-size: 14px;
+    }
+
+    .search-result-item p {
+        font-size: 12px;
+    }
+}

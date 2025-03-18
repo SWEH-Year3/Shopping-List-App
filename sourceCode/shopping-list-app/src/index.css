@@ -28,3 +28,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* ================================================Dark Mode====================================================== */
+
+.dark body {
+  background-color: #1A2225;
+  color: white;
+}
+button {
+  background-color: #9ED5C5;
+  color: black;
+}
+.dark button {
+  background-color: #8CEAD5;
+  color: black;
+}
+.list-card, .history-card, .recycle-card {
+  background-color: #e9f6ed;
+}
+
+.dark .list-card,
+.dark .history-card,
+.dark .recycle-card {
+  background-color: #8CEAD5;
+  color: black;
+}
+
+.dark .sidebar, .dark .navbar {
+  background-color: #8CEAD5;
+  color: black;
+}
+
+
+input, textarea {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+}
+
+.dark input, .dark textarea {
+  background-color: white;
+  color: white;
+  border: 1px solid #666;
+}

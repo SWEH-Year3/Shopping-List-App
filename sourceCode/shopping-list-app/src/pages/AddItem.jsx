@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/AddItem.css";
 
-function AddItem() {
+function AddItem({ addItem }) {
+  const { listId } = useParams(); 
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    title: "",
+    name: "",
     description: "",
-    quantity: "",
+    quantity: 1,
     price: "",
     image: null,
+    imagePreview: null,
   });
 
   const handleChange = (e) => {
@@ -15,25 +20,42 @@ function AddItem() {
   };
 
   const handleImageUpload = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({
+        ...formData,
+        image: file,
+        imagePreview: URL.createObjectURL(file), 
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Item added:", formData);
-    // Add logic to save the item
+    
+    const newItem = {
+      id: Date.now(),
+      name: formData.name,
+      description: formData.description,
+      quantity: parseInt(formData.quantity),
+      price: parseFloat(formData.price),
+      image: formData.imagePreview || "/placeholder.png",
+    };
+
+    addItem(listId, newItem); 
+    navigate(`/list/${listId}`); 
   };
 
   return (
     <div className="add-item-container">
       <h2>Add Item</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
+        <label>Item Name</label>
         <input
           type="text"
-          name="title"
+          name="name"
           placeholder="e.g. Milk"
-          value={formData.title}
+          value={formData.name}
           onChange={handleChange}
           required
         />
@@ -41,7 +63,7 @@ function AddItem() {
         <label>Description</label>
         <textarea
           name="description"
-          placeholder="e.g. Oat milk, 2 Liter"
+          placeholder="e.g. Oat milk, 2 Liters"
           value={formData.description}
           onChange={handleChange}
         />
@@ -66,12 +88,15 @@ function AddItem() {
           required
         />
 
-        <label>Upload Image</label>
-        <input type="file" onChange={handleImageUpload} />
+        <label htmlFor="img">Upload Image</label>
+        <input id="img" type="file" onChange={handleImageUpload} />
 
-        <button type="submit" className="add-item-button">
-            + Add Item
-        </button>
+       
+        {formData.imagePreview && (
+          <img src={formData.imagePreview} alt="Preview" className="image-preview" />
+        )}
+
+        <button type="submit" className="add-item-button">+ Add Item</button>
       </form>
     </div>
   );
