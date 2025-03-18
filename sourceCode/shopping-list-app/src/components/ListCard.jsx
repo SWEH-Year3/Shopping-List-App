@@ -24,8 +24,9 @@ function ListCard() {
     <div className="add-item-container">
       <h2>Add List</h2>
       <form onSubmit={handleSubmit}>
-        <label>Title</label>
+        <label htmlFor="title">Title</label>
         <input
+        id="title"
           type="text"
           name="title"
           placeholder="e.g. Milk"
@@ -34,8 +35,9 @@ function ListCard() {
           required
         />
 
-        <label>Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
+        id="description"
           name="description"
           placeholder="e.g. Oat milk, 2 Liter"
           value={formData.description}
