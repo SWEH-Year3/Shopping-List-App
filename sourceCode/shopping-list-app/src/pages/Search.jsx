@@ -14,12 +14,11 @@ function Search({ sidebarToggle, lists }) {
 
   return (
     <div className={`search-container ${sidebarToggle ? "" : "full-width"}`}>
- 
       <Toolbar.Root
         className={`ToolbarRoot ${sidebarToggle ? "" : "full-width"}`}
         aria-label="Formatting options"
       >
-        <input 
+        <input
           type="text"
           placeholder="Search by name..."
           className="ToolbarLink"
@@ -33,9 +32,13 @@ function Search({ sidebarToggle, lists }) {
       {searchQuery && (
         <div aria-label="lists" role="result" className="search-results">
           {filteredLists.length > 0 ? (
-            filteredLists.map((list) => (
-              <Link to={`/list/${list.id}`} key={list.id} className="search-result-item">
-                <h4 >{list.title}</h4>
+            filteredLists.map((list,index) => (
+              <Link
+                to={`/list/${list.id}`}
+                key={`${list.id}-${index}`}
+                className="search-result-item"
+              >
+                <h4>{list.title}</h4>
                 <p>{list.description}</p>
               </Link>
             ))

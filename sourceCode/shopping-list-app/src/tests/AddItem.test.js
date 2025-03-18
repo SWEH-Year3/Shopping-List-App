@@ -18,7 +18,7 @@ test("Add Item",()=>{
     const PriceInput=screen.getByPlaceholderText("e.g. 50");
     user.click(PriceInput);
     user.keyboard("999");
-    const ImageInput=screen.getByRole("textbox",{name:/img/i})
+    const ImageInput = screen.getByLabelText(/upload image/i);
     user.click(ImageInput);
     user.keyboard("esmail");
 
