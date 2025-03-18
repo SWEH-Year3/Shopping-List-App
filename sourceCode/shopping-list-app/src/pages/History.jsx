@@ -6,7 +6,7 @@ import { DotsVerticalIcon } from "@radix-ui/react-icons";
 
 
 
-function History({ sidebarToggle, lists }) {
+function History({sidebar, sidebarToggle, lists }) {
   
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ function History({ sidebarToggle, lists }) {
   };
 
   return (
-    <div className={`history-container ${sidebarToggle ? "" : "full-width"}`}>
+    <div onClick={()=>sidebar(false)} className={`history-container ${sidebarToggle ? "" : "full-width"}`}>
       <h2 className="history-title">History</h2>
       {Object.entries(groupedLists).map(([date, lists]) => (
         <div key={date} className="history-group">

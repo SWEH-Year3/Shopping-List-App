@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
 import "../styles/ListDetails.css";
+import Share from "../components/Share";
 
-function ListDetails({ lists , deleteItem}) {
+function ListDetails({ sidebar, lists , deleteItem}) {
     const { id } = useParams();
     const navigate = useNavigate();
     
+      const [isShareOpen, setIsShareOpen] = useState(false);
+      const [selectedList, setSelectedList] = useState(null);
     
     const list = lists.find((l) => l.id === parseInt(id)) || { title: "", items: [] };
   
@@ -18,7 +21,7 @@ function ListDetails({ lists , deleteItem}) {
     );
   
     return (
-      <div className="list-details-container">
+      <div  onClick={()=>sidebar(false)} className="list-details-container">
         <div className="list-details-header">
           <button className="back-button" onClick={() => navigate(`/myList`)}>←</button>
           <h2>{list.title}</h2>
@@ -71,7 +74,14 @@ function ListDetails({ lists , deleteItem}) {
                     Delete
                 </DropdownMenu.Item>
                 
-                <DropdownMenu.Item className="dropdown-item">
+                <DropdownMenu.Item
+                    className="dropdownMenu-item"
+                    onSelect={() => {
+                    // Set the list to share and open the Share dialog.
+                    setSelectedList(item);
+                    setIsShareOpen(true);
+                    }}
+                >
                     QR Code
                 </DropdownMenu.Item>
                 
@@ -90,7 +100,20 @@ function ListDetails({ lists , deleteItem}) {
           ))}
         </div>
   
-        <button className="floating-add-button" onClick={() => navigate(`/AddItem/${list.id}`)}>+</button>
+            <button className="floating-add-button" onClick={() => navigate(`/AddItem/${list.id}`)}>+</button>
+            
+                  {isShareOpen && (
+                    <Share
+                      openDialog={isShareOpen}
+                      onOpenChange={(open) => {
+                        setIsShareOpen(open);
+                        if (!open) {
+                          setSelectedList(null);
+                        }
+                      }}
+                      object={selectedList}
+                    />
+                  )}
       </div>
     );
   }

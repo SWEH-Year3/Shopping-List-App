@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/EditList.css";
 
-function EditList({ lists, updateList }) {
+function EditList({ sidebar, lists, updateList }) {
   const { listId } = useParams();
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function EditList({ lists, updateList }) {
   };
 
   return (
-    <div className="add-list-container">
+    <div onClick={()=>sidebar(false)} className="add-list-container">
       <h2>Edit List</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">List Name</label>

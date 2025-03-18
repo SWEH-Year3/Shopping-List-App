@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/AddItem.css";
 
-function AddItem({ addItem }) {
+function AddItem({ sidebar,addItem }) {
   const { listId } = useParams(); 
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ function AddItem({ addItem }) {
   };
 
   return (
-    <div className="add-item-container">
+    <div onClick={()=>sidebar(false)} className="add-item-container">
       <h2>Add Item</h2>
       <form onSubmit={handleSubmit}>
         <label>Item Name</label>

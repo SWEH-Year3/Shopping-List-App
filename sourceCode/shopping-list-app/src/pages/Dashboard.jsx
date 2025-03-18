@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/Dashboard.css"; 
+import DashboardChart from "../components/DashboardChart";
 
-function Dashboard({ lists }) {
+function Dashboard({ sidebar,lists }) {
   const totalItems = lists.reduce((sum, list) => sum + (list.items?.length || 0), 0);
 
   const totalPrice = lists.reduce((sum, list) => {
@@ -28,9 +29,11 @@ function Dashboard({ lists }) {
   }));
 
   return (
-    <div className="dashboard-container">
-      <h1 className="dashboard-heading">Dashboard</h1>
-
+    <div onClick={()=>sidebar(false)} className="dashboard-container">
+          <h1 className="dashboard-heading">Dashboard</h1>
+          <div >
+              <DashboardChart data={lists} />
+          </div>
      
       <div className="summary-statistics">
         <div className="statistic">

@@ -95,7 +95,8 @@ function App() {
       <NavBar sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle} />
       <SideBar sidebarToggle={sidebarToggle} />
       <div className={`content ${sidebarToggle ? "shifted" : ""}`}>
-        <AppRoutes
+              <AppRoutes
+          setSidebarToggle={setSidebarToggle}
           sidebarToggle={sidebarToggle}
           lists={lists}
           addList={addList}

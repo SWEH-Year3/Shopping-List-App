@@ -11,6 +11,7 @@ import AddList from "../pages/AddList";
 import ListDetails from "../pages/ListDetails";
 
 const AppRoutes = ({
+  setSidebarToggle,
   sidebarToggle,
   lists,
   addList,
@@ -25,36 +26,89 @@ const AppRoutes = ({
   return (
     <Routes>
       <Route
-        path="/search"
-        element={<Search sidebarToggle={sidebarToggle} lists={lists} />}
+        path="/"
+        element={
+          <Lists
+            sidebar={setSidebarToggle}
+            sidebarToggle={sidebarToggle}
+            lists={lists}
+            deleteList={deleteList}
+          />
+        }
       />
-      <Route path="/AddItem/:listId" element={<AddItem addItem={addItem} />} />
+      <Route
+        path="/search"
+        element={
+          <Search
+            sidebar={setSidebarToggle}
+            sidebarToggle={sidebarToggle}
+            lists={lists}
+          />
+        }
+      />
+      <Route
+        path="/AddItem/:listId"
+        element={<AddItem addItem={addItem} sidebar={setSidebarToggle} />}
+      />
       <Route
         path="/EditItem/:listId/:itemId"
-        element={<EditItem lists={lists} updateItem={updateItem} />}
+        element={
+          <EditItem
+            lists={lists}
+            updateItem={updateItem}
+            sidebar={setSidebarToggle}
+          />
+        }
       />
       <Route
         path="/EditList/:listId"
-        element={<EditList lists={lists} updateList={updateList} />}
+        element={
+          <EditList
+            lists={lists}
+            updateList={updateList}
+            sidebar={setSidebarToggle}
+          />
+        }
       />
       <Route
         path="/myList"
-        element={<Lists sidebarToggle={sidebarToggle} lists={lists} deleteList={deleteList} />}
-     />
+        element={
+          <Lists
+            sidebar={setSidebarToggle}
+            sidebarToggle={sidebarToggle}
+            lists={lists}
+            deleteList={deleteList}
+          />
+        }
+      />
       <Route
         path="/list/:id"
-        element={<ListDetails lists={lists} deleteItem={deleteItem} />}
+        element={
+          <ListDetails
+            lists={lists}
+            deleteItem={deleteItem}
+            sidebar={setSidebarToggle}
+          />
+        }
       />
       <Route
-      path="/dashboard"
-      element={<Dashboard lists={lists} />}
-    />
-      <Route path="/list/:id" element={<ListDetails lists={lists} />} />
+        path="/dashboard"
+        element={<Dashboard lists={lists} sidebar={setSidebarToggle} />}
+      />
+      <Route
+        path="/list/:id"
+        element={<ListDetails lists={lists} sidebar={setSidebarToggle} />}
+      />
       <Route
         path="/history"
-        element={<History sidebarToggle={sidebarToggle} lists={lists} />}
+        element={
+          <History
+            sidebarToggle={sidebarToggle}
+            lists={lists}
+            sidebar={setSidebarToggle}
+          />
+        }
       />
-
 
       <Route
         path="/recycleBin"
@@ -63,11 +117,24 @@ const AppRoutes = ({
             sidebarToggle={sidebarToggle}
             deletedItems={deletedItems}
             restoreItem={restoreItem}
+            sidebar={setSidebarToggle}
           />
-          }
-        />
-      <Route path="/myList" element={<Lists sidebarToggle={sidebarToggle} lists={lists} />} />
-      <Route path="/AddList" element={<AddList addList={addList} />} />
+        }
+      />
+      <Route
+        path="/myList"
+        element={
+          <Lists
+            sidebarToggle={sidebarToggle}
+            lists={lists}
+            sidebar={setSidebarToggle}
+          />
+        }
+      />
+      <Route
+        path="/AddList"
+        element={<AddList addList={addList} sidebar={setSidebarToggle} />}
+      />
       <Route path="*" element={<h1>404 Not Found</h1>} />
     </Routes>
   );

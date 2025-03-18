@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/RecycleBin.css";
 import { IoMdRefresh } from "react-icons/io";
 
-const RecycleBin = ({ sidebarToggle, deletedItems, restoreItem }) => {
+const RecycleBin = ({ sidebar, sidebarToggle, deletedItems, restoreItem }) => {
  
   const groupedItems = deletedItems.reduce((acc, item) => {
     const date = new Date(item.deletedAt).toLocaleDateString("en-US", {
@@ -19,7 +19,7 @@ const RecycleBin = ({ sidebarToggle, deletedItems, restoreItem }) => {
   }, {});
 
   return (
-    <div className={`recycle-bin-container ${sidebarToggle ? "" : "full-width"}`}>
+    <div onClick={()=>sidebar(false)} className={`recycle-bin-container ${sidebarToggle ? "" : "full-width"}`}>
       <h1 className="recycle-title">Recycle Bin</h1>
       {Object.entries(groupedItems).map(([date, items]) => (
         <div key={date} className="recycle-group">
