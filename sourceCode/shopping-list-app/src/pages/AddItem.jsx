@@ -88,8 +88,8 @@ function AddItem({ addItem }) {
           required
         />
 
-        <label>Upload Image</label>
-        <input type="file" onChange={handleImageUpload} />
+        <label htmlFor="img">Upload Image</label>
+        <input id="img" type="file" onChange={handleImageUpload} />
 
        
         {formData.imagePreview && (

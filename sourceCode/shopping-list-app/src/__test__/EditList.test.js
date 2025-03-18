@@ -20,7 +20,7 @@ test("add card list",()=>{
 
     screen.debug();
 
-    expect(moc).toHaveCalled();
-    expect(moc).toHaveCalledWith({name:"shopping",description:"studing is very borning"});
+    expect(moc).toHaveBeenCalled();
+    expect(moc).toHaveBeenCalledWith({title:"shopping",description:"studing is very borning"});
     
 })
