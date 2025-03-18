@@ -44,8 +44,9 @@ function EditList({ lists, updateList }) {
     <div className="add-list-container">
       <h2>Edit List</h2>
       <form onSubmit={handleSubmit}>
-        <label>List Name</label>
+        <label htmlFor="name">List Name</label>
         <input
+          id="name"
           type="text"
           name="title"
           placeholder="e.g. Grocery List"
@@ -54,8 +55,9 @@ function EditList({ lists, updateList }) {
           required
         />
 
-        <label>Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
+         id="description"
           name="description"
           placeholder="e.g. Weekly grocery list"
           value={formData.description}
