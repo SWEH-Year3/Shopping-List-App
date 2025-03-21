@@ -2,9 +2,9 @@
 
 import { CapacitorSQLite, SQLiteConnection } from "@capacitor-community/sqlite";
 
-const sqlite = new SQLiteConnection(CapacitorSQLite);
 
 export async function initializeDatabase() {
+const sqlite = new SQLiteConnection(CapacitorSQLite);   
   try {
     const db = await sqlite.createConnection("shoppingDB", false, "no-encryption", 1);
     await db.open();
@@ -37,9 +37,10 @@ export async function initializeDatabase() {
       );
     `);
 
-    return db;
+    db.close();
   } catch (error) {
     console.error("SQLite Initialization Error:", error);
     return null;
   }
 }
+

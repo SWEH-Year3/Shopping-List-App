@@ -6,7 +6,7 @@ function ListCard({sidebar, addList }) {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    title: "",
+    name: "",
     description: "",
     price: "",
     items: 0,
@@ -26,8 +26,7 @@ function ListCard({sidebar, addList }) {
 
    
     const newList = {
-      id: Date.now(), 
-      title: formData.title,
+      name: formData.name,
       description: formData.description,
       price: formData.price,
       items: formData.items,
@@ -45,9 +44,9 @@ function ListCard({sidebar, addList }) {
         <input
         id="title"
           type="text"
-          name="title"
+          name="name"
           placeholder="e.g. Groceries"
-          value={formData.title}
+          value={formData.name}
           onChange={handleChange}
           required
         />

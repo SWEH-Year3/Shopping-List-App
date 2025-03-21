@@ -5,7 +5,8 @@ import { DotsVerticalIcon } from "@radix-ui/react-icons";
 import "../styles/ListDetails.css";
 import Share from "../components/Share";
 
-function ListDetails({ sidebar, lists , deleteItem}) {
+
+function ListDetails({ sidebar, lists , deleteItem, checkItem, uncheckItem}) {
     const { id } = useParams();
     const navigate = useNavigate();
     
@@ -15,10 +16,11 @@ function ListDetails({ sidebar, lists , deleteItem}) {
     const list = lists.find((l) => l.id === parseInt(id)) || { title: "", items: [] };
   
     
-    const totalPrice = (Array.isArray(list.items) ? list.items : []).reduce(
-      (sum, item) => sum + (item.price * item.quantity || 0),
-      0
-    );
+    const totalPrice = list.TotalCost;
+    // const totalPrice = (Array.isArray(list.items) ? list.items : []).reduce(
+    //   (sum, item) => sum + (item.price || 0),
+    //   0
+    // );
   
     return (
       <div  onClick={()=>sidebar(false)} className="list-details-container">
@@ -31,7 +33,7 @@ function ListDetails({ sidebar, lists , deleteItem}) {
         <div className="items-list">
           {(Array.isArray(list.items) ? list.items : []).map((item, index) => (
             <div key={index} className="item-card">
-              <input type="checkbox" className="item-checkbox" />
+              <input type="checkbox" className="item-checkbox" onClick={() => item.checked ? uncheckItem(item.id) : checkItem(item.id)}/>
               <img src={item.image || "/placeholder.png"} alt={item.name} className="item-image" />
               <div className="item-details">
                 <h4 className="item-name">{item.name}</h4>

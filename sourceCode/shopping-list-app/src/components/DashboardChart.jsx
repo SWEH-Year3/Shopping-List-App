@@ -15,23 +15,23 @@ export default function DashboardChart({ data }) {
     }];
     
     return (
-        <ResponsiveContainer width="100%" height={300}>
-            <BarChart
-                data={data2}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="created_at" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="Quantity" fill="#8884d8" />
-            </BarChart>
-        </ResponsiveContainer>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="time_stamp" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="Quantity" fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
     );
 }

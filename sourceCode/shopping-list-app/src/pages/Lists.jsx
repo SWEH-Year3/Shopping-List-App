@@ -21,10 +21,11 @@ function Lists({ sidebar, sidebarToggle, lists, deleteList }) {
 
       <div className="list-group">
         {lists.map((list) => {
-          const totalPrice = (list.items || []).reduce(
-            (sum, item) => sum + (item.price * item.quantity || 0),
-            0
-          );
+          const totalPrice = list.TotalCost;
+        //   const totalPrice = (list.items || []).reduce(
+        //     (sum, item) => sum + (item.price  || 0),
+        //     0
+        //   );
 
           return (
             <div
@@ -93,7 +94,8 @@ function Lists({ sidebar, sidebarToggle, lists, deleteList }) {
               <div className="list-card-info">
                 <p className="list-card-price">L.E {totalPrice}</p>
                 <p className="list-card-items">
-                  Items: {(list.items || []).length}
+                  {/* Items: {(list.items || []).length} */}
+                  Items: {list.ItemCount}
                 </p>
               </div>
             </div>

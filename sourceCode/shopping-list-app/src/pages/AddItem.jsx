@@ -9,7 +9,7 @@ function AddItem({ sidebar,addItem }) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    quantity: 1,
+    quantity: "",
     price: "",
     image: null,
     imagePreview: null,
@@ -70,9 +70,9 @@ function AddItem({ sidebar,addItem }) {
 
         <label>Quantity</label>
         <input
-          type="number"
+          type="text"
           name="quantity"
-          placeholder="e.g. 2"
+          placeholder="e.g. 2 kg"
           value={formData.quantity}
           onChange={handleChange}
           required

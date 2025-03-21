@@ -22,6 +22,8 @@ const AppRoutes = ({
   deleteList,
   deletedItems,
   restoreItem,
+  checkItem,
+  uncheckItem
 }) => {
   return (
     <Routes>
@@ -87,7 +89,9 @@ const AppRoutes = ({
           <ListDetails
             lists={lists}
             deleteItem={deleteItem}
-            sidebar={setSidebarToggle}
+                sidebar={setSidebarToggle}
+                checkItem={checkItem}
+                uncheckItem={uncheckItem}
           />
         }
       />
@@ -97,7 +101,7 @@ const AppRoutes = ({
       />
       <Route
         path="/list/:id"
-        element={<ListDetails lists={lists} sidebar={setSidebarToggle} />}
+        element={<ListDetails lists={lists} sidebar={setSidebarToggle}  />}
       />
       <Route
         path="/history"

@@ -12,7 +12,7 @@ function EditItem({ sidebar, lists, updateItem }) {
   const [formData, setFormData] = useState({
     name: item?.name || "",
     description: item?.description || "",
-    quantity: item?.quantity || 1,
+    quantity: item?.quantity || "1",
     price: item?.price || "",
     image: null,
     imagePreview: item?.image || null,
@@ -86,9 +86,9 @@ function EditItem({ sidebar, lists, updateItem }) {
 
         <label>Quantity</label>
         <input
-          type="number"
+          type="text"
           name="quantity"
-          placeholder="e.g. 2"
+          placeholder="e.g. 2 kg"
           value={formData.quantity}
           onChange={handleChange}
           required
