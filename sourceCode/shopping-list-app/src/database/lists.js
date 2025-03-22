@@ -199,7 +199,8 @@ export async function getDashboardChartData() {
       LEFT JOIN Items ON Lists.id = Items.listID
       WHERE Lists.created_at >= substr(date('now'),1,4) || '-01-01'
         AND Lists.created_at <= substr(date('now'),1,4) || '-12-31'
-      GROUP BY Lists.created_at;
+      GROUP BY SUBSTRING(Lists.created_at,1,10)
+      ORDER BY SUBSTRING(Lists.created_at,1,10);
     `);
     return result.values || [];
   } catch (error) {

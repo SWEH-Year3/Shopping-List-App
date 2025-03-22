@@ -19,7 +19,7 @@ function ListCard({ sidebar, addList, addSharedList }) {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     if (!addList) {
       console.error("addList function is not available");
