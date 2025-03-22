@@ -17,24 +17,26 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
+        working-directory: sourceCode/shopping-list-app
         run: npm install
 
       - name: Build Web App
+        working-directory: sourceCode/shopping-list-app
         run: npm run build
 
       - name: Sync Capacitor for Android
+        working-directory: sourceCode/shopping-list-app
         run: npx cap sync android
 
       - name: Build Android App
-        working-directory: android
-        run: |
-          ./gradlew assembleRelease
+        working-directory: sourceCode/shopping-list-app/android
+        run: ./gradlew assembleRelease
 
       - name: Upload Android APK
-        uses: actions/upload-artifact@v4 # Update to latest stable version
+        uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: sourceCode/shopping-list-app/android/app/build/outputs/apk/release/app-release.apk
 
   ios:
     name: Build iOS IPA
@@ -49,26 +51,29 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
+        working-directory: sourceCode/shopping-list-app
         run: npm install
 
       - name: Build Web App
+        working-directory: sourceCode/shopping-list-app
         run: npm run build
 
       - name: Sync Capacitor for iOS
+        working-directory: sourceCode/shopping-list-app
         run: npx cap sync ios
 
       - name: Build iOS App Archive
-        working-directory: ios/App
+        working-directory: sourceCode/shopping-list-app/ios/App
         run: |
           xcodebuild -scheme App -configuration Release -sdk iphoneos archive -archivePath App.xcarchive
 
       - name: Export iOS IPA
-        working-directory: ios/App
+        working-directory: sourceCode/shopping-list-app/ios/App
         run: |
           xcodebuild -exportArchive -archivePath App.xcarchive -exportOptionsPlist ../exportOptions.plist -exportPath ./build
 
       - name: Upload iOS IPA
-        uses: actions/upload-artifact@v4 # Update to latest stable version
+        uses: actions/upload-artifact@v4
         with:
           name: ios-ipa
-          path: ios/App/build/App.ipa
+          path: sourceCode/shopping-list-app/ios/App/build/App.ipa
