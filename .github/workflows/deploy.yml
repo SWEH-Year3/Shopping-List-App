@@ -2,7 +2,8 @@ name: Build and Deploy Capacitor App
 
 on:
   workflow_dispatch:
-  jobs:
+
+jobs:
   android:
     name: Build and Release Android APK
     runs-on: ubuntu-latest
