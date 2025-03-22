@@ -22,6 +22,13 @@
       href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Italiana&family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap"
       rel="stylesheet"
     />
+    <!-- download function -->
+    <script>
+      function downloadAPK() {
+        window.location.href =
+          "https://github.com/SWEH-Year3/Shopping-List-App/releases/download/v0.0.1/shop-ly.apk"; // Change this to your desired URL
+      }
+    </script>
   </head>
   <body>
     <div>
@@ -69,11 +76,13 @@
           >
         </div>
         <div class="download">
-          <button class="android" onclick="window.location.href = '#'">
+          <button class="android" onclick="downloadAPK()">
             <i class="fa-solid fa-download"></i> Download for Android
           </button>
-          <button onclick="window.location.href = '#'">
-            <i class="fa-solid fa-download"></i> Download for IOS
+          <button
+            onclick="window.location.href = 'mailto:testo63b@gmail.com?subject=Contact'"
+          >
+            <i class="fa-solid fa-envelope"></i> Contact Us
           </button>
         </div>
       </div>
