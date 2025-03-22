@@ -23,12 +23,15 @@ jobs:
         run: npm install
 
       - name: Build Web App
+        working-directory: sourceCode/shopping-list-app
         run: npm run build
 
       - name: Copy Capacitor Assets
+        working-directory: sourceCode/shopping-list-app
         run: npx cap copy
 
       - name: Sync Capacitor for Android
+        working-directory: sourceCode/shopping-list-app
         run: npx cap sync android
 
       - name: Set gradlew permissions
