@@ -7,6 +7,8 @@ jobs:
   android:
     name: Build Android APK
     runs-on: ubuntu-latest
+    env:
+      CI: false
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -15,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      
+
       - name: Install Dependencies
         working-directory: sourceCode/shopping-list-app
         run: npm install
@@ -31,7 +33,7 @@ jobs:
       - name: Set gradlew permissions
         working-directory: sourceCode/shopping-list-app/android
         run: chmod +x gradlew
-
+        
       - name: Build Android App
         working-directory: sourceCode/shopping-list-app/android
         run: ./gradlew assembleRelease
@@ -41,8 +43,6 @@ jobs:
         with:
           name: android-apk
           path: sourceCode/shopping-list-app/android/app/build/outputs/apk/release/app-release.apk
-
-
 
   # ios:
   #   name: Build iOS IPA
