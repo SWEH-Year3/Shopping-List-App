@@ -7,8 +7,6 @@ jobs:
   android:
     name: Build Android APK
     runs-on: ubuntu-latest
-    env:
-      CI: false
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -17,7 +15,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-
+      
       - name: Install Dependencies
         working-directory: sourceCode/shopping-list-app
         run: npm install
@@ -30,6 +28,10 @@ jobs:
         working-directory: sourceCode/shopping-list-app
         run: npx cap sync android
 
+      - name: Set gradlew permissions
+        working-directory: sourceCode/shopping-list-app/android
+        run: chmod +x gradlew
+
       - name: Build Android App
         working-directory: sourceCode/shopping-list-app/android
         run: ./gradlew assembleRelease
@@ -40,44 +42,46 @@ jobs:
           name: android-apk
           path: sourceCode/shopping-list-app/android/app/build/outputs/apk/release/app-release.apk
 
-  ios:
-    name: Build iOS IPA
-    runs-on: macos-latest
-    env:
-      CI: false
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
 
-      - name: Install Dependencies
-        working-directory: sourceCode/shopping-list-app
-        run: npm install
+  # ios:
+  #   name: Build iOS IPA
+  #   runs-on: macos-latest
+  #   env:
+  #     CI: false
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v3
 
-      - name: Build Web App
-        working-directory: sourceCode/shopping-list-app
-        run: npm run build
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20'
 
-      - name: Sync Capacitor for iOS
-        working-directory: sourceCode/shopping-list-app
-        run: npx cap sync ios
+  #     - name: Install Dependencies
+  #       working-directory: sourceCode/shopping-list-app
+  #       run: npm install
 
-      - name: Build iOS App Archive
-        working-directory: sourceCode/shopping-list-app/ios/App
-        run: |
-          xcodebuild -scheme App -configuration Release -sdk iphoneos archive -archivePath App.xcarchive
+  #     - name: Build Web App
+  #       working-directory: sourceCode/shopping-list-app
+  #       run: npm run build
 
-      - name: Export iOS IPA
-        working-directory: sourceCode/shopping-list-app/ios/App
-        run: |
-          xcodebuild -exportArchive -archivePath App.xcarchive -exportOptionsPlist ../exportOptions.plist -exportPath ./build
+  #     - name: Sync Capacitor for iOS
+  #       working-directory: sourceCode/shopping-list-app
+  #       run: npx cap sync ios
 
-      - name: Upload iOS IPA
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-ipa
-          path: sourceCode/shopping-list-app/ios/App/build/App.ipa
+  #     - name: Build iOS App Archive
+  #       working-directory: sourceCode/shopping-list-app/ios/App
+  #       run: |
+  #         xcodebuild -scheme App -configuration Release -sdk iphoneos archive -archivePath App.xcarchive
+
+  #     - name: Export iOS IPA
+  #       working-directory: sourceCode/shopping-list-app/ios/App
+  #       run: |
+  #         xcodebuild -exportArchive -archivePath App.xcarchive -exportOptionsPlist ../exportOptions.plist -exportPath ./build
+
+  #     - name: Upload iOS IPA
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ios-ipa
+  #         path: sourceCode/shopping-list-app/ios/App/build/App.ipa
