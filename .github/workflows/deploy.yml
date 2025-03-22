@@ -31,7 +31,7 @@ jobs:
           ./gradlew assembleRelease
 
       - name: Upload Android APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: android-apk
           path: android/app/build/outputs/apk/release/app-release.apk
@@ -68,7 +68,7 @@ jobs:
           xcodebuild -exportArchive -archivePath App.xcarchive -exportOptionsPlist ../exportOptions.plist -exportPath ./build
 
       - name: Upload iOS IPA
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: ios-ipa
           path: ios/App/build/App.ipa
