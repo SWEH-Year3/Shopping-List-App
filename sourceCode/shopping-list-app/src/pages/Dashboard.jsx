@@ -1,63 +1,45 @@
-import React, { useState , useEffect} from "react";
-import "../styles/Dashboard.css"; 
+import React, { useState, useEffect } from "react";
+import "../styles/Dashboard.css";
 import DashboardChart from "../components/DashboardChart";
-import { getDashboardChartData, getDashboardData, getTotalPriceAndAveragePrice}  from '../database/lists.js';
+import {
+  getDashboardChartData,
+  getDashboardData,
+  getTotalPriceAndAveragePrice,
+} from "../database/lists.js";
 
-function Dashboard({ sidebar,lists }) {
-//   const totalItems = lists.reduce((sum, list) => sum + (list.items?.length || 0), 0);
+function Dashboard({ sidebar, lists }) {
+  const [dashboardChartData, setDashboardChartData] = useState([]);
+  const [summaryData, setSummaryData] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [averagePrice, setAveragePrice] = useState(0.0);
 
-//   const totalPrice = lists.reduce((sum, list) => {
-//     return sum + (list.items?.reduce((listSum, item) => listSum + (item.price   || 0), 0) || 0);
-//   }, 0);
-//   const averagePrice = totalItems > 0 ? (totalPrice / totalItems).toFixed(2) : 0;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const chartData = await getDashboardChartData();
+        const summary = await getDashboardData();
+        const totalArr = await getTotalPriceAndAveragePrice();
 
-//   const itemSummary = lists.reduce((acc, list) => {
-//     list.items?.forEach((item) => {
-//       if (!acc[item.name]) {
-//         acc[item.name] = { totalQuantity: 0, totalPrice: 0, count: 0 };
-//       }
-//       acc[item.name].totalQuantity +=  item.quantity || 0;
-//       acc[item.name].totalPrice += item.price   || 0;
-//       acc[item.name].count += 1;
-//     });
-//     return acc;
-//   }, {});
-
-//   const itemSummaryArray = Object.entries(itemSummary).map(([name, data]) => ({
-//     name,
-//     avgPrice: (data.totalPrice / data.totalQuantity).toFixed(2),
-//     totalQuantity: data.totalQuantity,
-//   }));
-    
-    /*
-    1. get dashboard chart data
-    2. get summary data
-    3. assign them
-    */
-    const [dashboardChartData, setDashboardChartData] = useState([]);
-    const [summaryData, setSummaryData] = useState([]);
-    const [totalItems, settotalQuantity] = useState(0);
-    const [averagePrice, settotalPrice] = useState(0.0);
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const chartData = await getDashboardChartData();
-          const summary = await getDashboardData();
-          const total = await getTotalPriceAndAveragePrice(); 
-          settotalPrice(total.AverageCost.toFixed(2));
-          settotalQuantity(total.TotalCost.toFixed(2));  
-          setDashboardChartData(chartData);
-          setSummaryData(summary);
-        } catch (error) {
-          console.error("Error fetching data:", error);
+        // Expecting totalArr to be an array with one object
+        if (totalArr.length > 0) {
+          setAveragePrice(Number(totalArr[0].AverageCost).toFixed(2));
+          setTotalItems(Number(totalArr[0].TotalCost).toFixed(2));
         }
-      };
-      fetchData();
-    }, []);
-    if (dashboardChartData.length === 0 || summaryData.length === 0) {
-      return <div>Loading...</div>;
-    }
-    
+
+        setDashboardChartData(chartData);
+        setSummaryData(summary);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // If no dashboardChartData or summaryData is returned, show Loading
+  if (dashboardChartData.length === 0 || summaryData.length === 0) {
+    return <h3 style={{ textAlign: "center" , marginTop: "50vh"}}>Loading...</h3>;
+  }
+
   return (
     <div onClick={() => sidebar(false)} className="dashboard-container">
       <h1 className="dashboard-heading">Dashboard</h1>

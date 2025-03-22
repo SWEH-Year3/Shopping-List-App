@@ -30,20 +30,20 @@ const SideBar = ({ sidebarToggle }) => {
             My Lists
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/history">
             <LuHistory />
             History
           </Link>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Link to="/recycleBin">
             <FaRegTrashAlt />
             Recycle Bin
           </Link>
-        </li>
+        </li> */}
       </ul>
-      <ThemeToggle/>
+      {/* <ThemeToggle/> */}
     </div>
   );
 };

@@ -15,7 +15,8 @@ export default function DashboardChart({ data }) {
     }];
     
     return (
-      <ResponsiveContainer width="100%" height={300}>
+        <>
+            {data.length > 0 ? (<ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={data}
           margin={{
@@ -26,12 +27,14 @@ export default function DashboardChart({ data }) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time_stamp" />
+          <XAxis dataKey="date_stamp" />
           <YAxis />
           <Tooltip />
           <Legend />
           <Bar dataKey="Quantity" fill="#8884d8" />
         </BarChart>
-      </ResponsiveContainer>
+      </ResponsiveContainer>): ( <h3>no data</h3> ) }
+      
+    </>
     );
 }

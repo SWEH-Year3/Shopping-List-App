@@ -23,7 +23,8 @@ const AppRoutes = ({
   deletedItems,
   restoreItem,
   checkItem,
-  uncheckItem
+  uncheckItem,
+  addSharedList
 }) => {
   return (
     <Routes>
@@ -89,9 +90,9 @@ const AppRoutes = ({
           <ListDetails
             lists={lists}
             deleteItem={deleteItem}
-                sidebar={setSidebarToggle}
-                checkItem={checkItem}
-                uncheckItem={uncheckItem}
+            sidebar={setSidebarToggle}
+            checkItem={checkItem}
+            uncheckItem={uncheckItem}
           />
         }
       />
@@ -101,7 +102,7 @@ const AppRoutes = ({
       />
       <Route
         path="/list/:id"
-        element={<ListDetails lists={lists} sidebar={setSidebarToggle}  />}
+        element={<ListDetails lists={lists} sidebar={setSidebarToggle} />}
       />
       <Route
         path="/history"
@@ -137,7 +138,14 @@ const AppRoutes = ({
       />
       <Route
         path="/AddList"
-        element={<AddList addList={addList} sidebar={setSidebarToggle} />}
+        element={
+          <AddList
+            addList={addList}
+            sidebar={setSidebarToggle}
+            lists={lists}
+            addSharedList={addSharedList}
+          />
+        }
       />
       <Route path="*" element={<h1>404 Not Found</h1>} />
     </Routes>

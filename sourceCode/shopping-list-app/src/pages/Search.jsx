@@ -9,12 +9,12 @@ function Search({ sidebar, sidebarToggle, lists }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredLists = lists.filter((list) =>
-    list.title.toLowerCase().includes(searchQuery.toLowerCase())
+    list.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div
-      onClick={()=>sidebar(false)}
+      onClick={() => sidebar(false)}
       className={`search-container ${sidebarToggle ? "" : "full-width"}`}
     >
       <Toolbar.Root
@@ -41,7 +41,7 @@ function Search({ sidebar, sidebarToggle, lists }) {
                 key={`${list.id}-${index}`}
                 className="search-result-item"
               >
-                <h4>{list.title}</h4>
+                <h4>{list.name}</h4>
                 <p>{list.description}</p>
               </Link>
             ))

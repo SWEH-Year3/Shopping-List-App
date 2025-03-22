@@ -16,6 +16,7 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
+  z-index:  9999;
 }
 
 .total-price {
@@ -126,4 +127,5 @@
   height: 2.5rem;
   width: 2.5rem;
   font-size: 1.5rem;
+  z-index:  9999;
 }

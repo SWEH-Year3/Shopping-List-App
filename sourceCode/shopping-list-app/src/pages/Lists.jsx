@@ -1,3 +1,5 @@
+
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/MyLists.css";
@@ -87,7 +89,7 @@ function Lists({ sidebar, sidebarToggle, lists, deleteList }) {
               </DropdownMenu.Root>
 
               <div className="list-card-content">
-                <h4 className="list-card-title">{list.title}</h4>
+                <h4 className="list-card-title">{list.name}</h4>
                 <p className="list-card-desc">{list.description}</p>
               </div>
 
@@ -111,9 +113,10 @@ function Lists({ sidebar, sidebarToggle, lists, deleteList }) {
         <Share
           openDialog={isShareOpen}
           onOpenChange={(open) => {
-            setIsShareOpen(open);
+              setIsShareOpen(open);
+              console.log(selectedList);
             if (!open) {
-              setSelectedList(null);
+                setSelectedList(null);
             }
           }}
           object={selectedList}

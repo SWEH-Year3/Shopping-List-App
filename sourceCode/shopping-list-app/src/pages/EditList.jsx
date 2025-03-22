@@ -6,17 +6,18 @@ function EditList({ sidebar, lists, updateList }) {
   const { listId } = useParams();
   const navigate = useNavigate();
 
+  // Use 'name' since your database uses name, not title.
   const list = lists.find((l) => l.id === parseInt(listId));
 
   const [formData, setFormData] = useState({
-    title: list?.title || "",
+    name: list?.name || "",
     description: list?.description || "",
   });
 
   useEffect(() => {
     if (list) {
       setFormData({
-        title: list.title,
+        name: list.name,
         description: list.description,
       });
     }
@@ -31,7 +32,7 @@ function EditList({ sidebar, lists, updateList }) {
 
     const updatedList = {
       id: list.id,
-      title: formData.title,
+      name: formData.name,
       description: formData.description,
       items: list.items,
     };
@@ -41,23 +42,23 @@ function EditList({ sidebar, lists, updateList }) {
   };
 
   return (
-    <div onClick={()=>sidebar(false)} className="add-list-container">
+    <div onClick={() => sidebar(false)} className="add-list-container">
       <h2>Edit List</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">List Name</label>
         <input
           id="name"
           type="text"
-          name="title"
+          name="name"
           placeholder="e.g. Grocery List"
-          value={formData.title}
+          value={formData.name}
           onChange={handleChange}
           required
         />
 
         <label htmlFor="description">Description</label>
         <textarea
-         id="description"
+          id="description"
           name="description"
           placeholder="e.g. Weekly grocery list"
           value={formData.description}
@@ -72,4 +73,4 @@ function EditList({ sidebar, lists, updateList }) {
   );
 }
 
-export default EditList; 
+export default EditList;

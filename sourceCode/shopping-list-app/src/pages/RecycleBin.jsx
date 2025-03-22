@@ -3,14 +3,13 @@ import "../styles/RecycleBin.css";
 import { IoMdRefresh } from "react-icons/io";
 
 const RecycleBin = ({ sidebar, sidebarToggle, deletedItems, restoreItem }) => {
- 
+  // Group deleted items by the formatted deleted date
   const groupedItems = deletedItems.reduce((acc, item) => {
     const date = new Date(item.deletedAt).toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
     });
-
     if (!acc[date]) {
       acc[date] = [];
     }
@@ -19,7 +18,10 @@ const RecycleBin = ({ sidebar, sidebarToggle, deletedItems, restoreItem }) => {
   }, {});
 
   return (
-    <div onClick={()=>sidebar(false)} className={`recycle-bin-container ${sidebarToggle ? "" : "full-width"}`}>
+    <div
+      onClick={() => sidebar(false)}
+      className={`recycle-bin-container ${sidebarToggle ? "" : "full-width"}`}
+    >
       <h1 className="recycle-title">Recycle Bin</h1>
       {Object.entries(groupedItems).map(([date, items]) => (
         <div key={date} className="recycle-group">
@@ -31,13 +33,14 @@ const RecycleBin = ({ sidebar, sidebarToggle, deletedItems, restoreItem }) => {
                   <input type="checkbox" />
                   <span className="recycle-card-title">{item.name}</span>
                 </div>
-                <p className="recycle-card-desc">{item.details}</p>
+                {/* Use item.description instead of item.details */}
+                <p className="recycle-card-desc">{item.description}</p>
               </div>
               <div className="recycle-card-info">
                 <IoMdRefresh
                   className="restore-icon"
                   title="Restore"
-                  onClick={() => restoreItem(item.id)} 
+                  onClick={() => restoreItem(item.id)}
                 />
                 <p className="recycle-card-price">L.E. {item.price}</p>
                 <p className="recycle-card-quantity">x {item.quantity}</p>
