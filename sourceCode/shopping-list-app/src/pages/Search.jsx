@@ -5,15 +5,18 @@ import { IoIosSearch } from "react-icons/io";
 import img from "../assets/img/search illustration.svg";
 import { Link } from "react-router-dom";
 
-function Search({ sidebarToggle, lists }) {
+function Search({ sidebar, sidebarToggle, lists }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredLists = lists.filter((list) =>
-    list.title.toLowerCase().includes(searchQuery.toLowerCase())
+    list.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className={`search-container ${sidebarToggle ? "" : "full-width"}`}>
+    <div
+      onClick={() => sidebar(false)}
+      className={`search-container ${sidebarToggle ? "" : "full-width"}`}
+    >
       <Toolbar.Root
         className={`ToolbarRoot ${sidebarToggle ? "" : "full-width"}`}
         aria-label="Formatting options"
@@ -32,13 +35,13 @@ function Search({ sidebarToggle, lists }) {
       {searchQuery && (
         <div aria-label="lists" role="result" className="search-results">
           {filteredLists.length > 0 ? (
-            filteredLists.map((list,index) => (
+            filteredLists.map((list, index) => (
               <Link
                 to={`/list/${list.id}`}
                 key={`${list.id}-${index}`}
                 className="search-result-item"
               >
-                <h4>{list.title}</h4>
+                <h4>{list.name}</h4>
                 <p>{list.description}</p>
               </Link>
             ))

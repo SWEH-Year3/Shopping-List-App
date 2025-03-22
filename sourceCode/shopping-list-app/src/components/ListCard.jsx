@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/AddList.css";
-
-function ListCard({ addList }) {
+import Scan from "./Scan";
+import logo from "../assets/img/scanner-icon.svg";
+function ListCard({ sidebar, addList, addSharedList }) {
   const navigate = useNavigate();
-  
+
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const [formData, setFormData] = useState({
-    title: "",
+    name: "",
     description: "",
     price: "",
     items: 0,
@@ -17,53 +19,77 @@ function ListCard({ addList }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    
+    // e.preventDefault();
+
     if (!addList) {
       console.error("addList function is not available");
       return;
     }
 
-   
     const newList = {
-      id: Date.now(), 
-      title: formData.title,
+      name: formData.name,
       description: formData.description,
       price: formData.price,
       items: formData.items,
     };
 
-    addList(newList); 
+    addList(newList);
     navigate("/myList");
   };
 
   return (
-    <div className="add-item-container">
-      <h2>Add List</h2>
+    <div onClick={() => sidebar(false)} className="add-item-container">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <h2>Add List</h2>
+        <img
+          src={logo}
+          alt="scanner icon"
+          onClick={() => setIsShareOpen(true)}
+        />
+      </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input
-        id="title"
+          id="title"
           type="text"
-          name="title"
+          name="name"
           placeholder="e.g. Groceries"
-          value={formData.title}
+          value={formData.name}
           onChange={handleChange}
           required
         />
 
         <label htmlFor="description">Description</label>
         <textarea
-        id="description"
+          id="description"
           name="description"
           placeholder="e.g. Weekly groceries shopping"
           value={formData.description}
           onChange={handleChange}
         />
 
-
         <button type="submit">+ Add List</button>
       </form>
+      {isShareOpen && (
+        <Scan
+          openDialog={isShareOpen}
+          onOpenChange={(open) => {
+            setIsShareOpen(open);
+          }}
+          objectSetter={(data) => {
+            addSharedList(data);
+            
+            navigate("/myList");
+          }}
+        />
+      )}
     </div>
   );
 }
