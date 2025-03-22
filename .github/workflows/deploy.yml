@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  android:
-    name: Build and Release Android APK
+  release:
     runs-on: ubuntu-latest
     env:
       CI: false
@@ -18,43 +17,57 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      
+
       - name: Install Dependencies
-        working-directory: sourceCode/shopping-list-app
         run: npm install
 
       - name: Build Web App
-        working-directory: sourceCode/shopping-list-app
         run: npm run build
 
       - name: Copy Capacitor Assets
-        working-directory: sourceCode/shopping-list-app
         run: npx cap copy
 
       - name: Sync Capacitor for Android
-        working-directory: sourceCode/shopping-list-app
         run: npx cap sync android
 
       - name: Set gradlew permissions
         working-directory: sourceCode/shopping-list-app/android
         run: chmod +x gradlew
 
-      # Change to assembleRelease if you have signing configured
+      # Build your APK (use assembleRelease if signing is configured)
       - name: Build Android App (Debug)
         working-directory: sourceCode/shopping-list-app/android
         run: ./gradlew assembleDebug
 
+      # Determine the next version based on latest git tag
+      - name: Determine new version tag
+        id: get_new_version
+        run: |
+          # Get the latest tag. If no tag exists, default to v0.0.0
+          latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+          echo "Latest tag: $latest_tag"
+          # Remove leading 'v'
+          version=${latest_tag#v}
+          IFS='.' read -r major minor patch <<< "$version"
+          # Increment patch version (you can change this to major/minor as needed)
+          new_patch=$((patch + 1))
+          new_version="v${major}.${minor}.${new_patch}"
+          echo "New version: $new_version"
+          echo "::set-output name=new_version::$new_version"
+
+      # Create a new release using the new tag
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
+          tag_name: ${{ steps.get_new_version.outputs.new_version }}
+          release_name: Release ${{ steps.get_new_version.outputs.new_version }}
           draft: false
           prerelease: false
 
+      # Upload the APK as a release asset (update path as needed)
       - name: Upload Android APK
         uses: actions/upload-release-asset@v1
         env:
@@ -62,7 +75,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: sourceCode/shopping-list-app/android/app/build/outputs/apk/debug/app-debug.apk
-          asset_name: app-debug.apk
+          asset_name: shop-ly.apk
           asset_content_type: application/vnd.android.package-archive
 
   # ios:
