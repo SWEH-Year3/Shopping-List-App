@@ -164,10 +164,10 @@ a{
     z-index: 1;
     /* margin-left: 30px;
     margin-top: 50px;    */
-    margin-right: 2vw;
+    margin-right: 25px;
 }
 
-.container .download button{
+.container .download .button{
     border-color: var(--main-color);
     background-color: #ececea;
     border-radius: 6px;
@@ -179,9 +179,16 @@ a{
     box-shadow: 1px 5px 20px 0px #66666666;
     min-width: max-content;
     transition: var(--main-transition);
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
-.container .download button:hover{
+.container .download .button i{
+    margin-right: 10px;
+}
+
+.container .download .button:hover{
     background-color: var(--main-color);
     color: #ececea;
     cursor: pointer;
@@ -245,7 +252,7 @@ a{
         margin-top: 25px;
     }
 
-    .container .download button{
+    .container .download .button{
         width: 100%;
     }
 
